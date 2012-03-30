@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# /etc/init.d/procps
+# Set kernel variables from /etc/sysctl.conf
+#
+# chkconfig: 2345 90 60
+# description: Configure kernel parameters at boottime
+#
+
+. /etc/init.d/functions
+
+case "$1" in
+	start|restart|force-reload|reload)
+		echo "Setting kernel variables "
+                apply_sysctl
+		;;
+	stop)
+		;;
+        status)
+                ;;
+	*)
+		echo "Usage: $0 {start|stop|restart|reload|force-reload|status}" >&2
+		exit 3
+		;;
+esac
+
+exit 0
